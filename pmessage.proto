@@ -1,0 +1,39 @@
+syntax="proto3";
+
+package envoyds;
+
+message ServiceGetResponse {
+    string env = 1;
+    repeated Host hosts = 2;
+    string service = 3;
+}
+
+message ServicePostRequest {
+    string ip = 1;
+    string service_repo_name = 2;
+    int32 port = 3;
+    string revision = 4;
+    Tags tags = 5;
+}
+
+message ServiceUpdateLoadBalancingRequest {
+    int32 load_balancing_weight = 1;
+}
+
+message Host {
+    string ip_address = 1;
+    string last_check_in = 2;
+    int32 port = 3;
+    string revision = 4;
+    string service = 5;
+    string service_repo_name = 6;
+    Tags tags = 7;
+}
+
+message Tags {
+    string az = 1;
+    string region = 2;
+    string instance_id = 3;
+    bool canary = 4;
+    int32 load_balancing_weight = 5;
+}

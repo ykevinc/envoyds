@@ -1,0 +1,22 @@
+hash: 2157451c8832e115b1e1262115b545982528be82833d4ab452aa16e4a026f8d7
+updated: 2017-04-04T23:05:16.360204693-07:00
+imports:
+- name: github.com/BurntSushi/toml
+  version: b26d9c308763d68093482582cea63d69be07a0f0
+- name: github.com/go-redis/redis
+  version: 2cf5af9928978bbef8d1076607022403439e177c
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+- name: github.com/golang/protobuf
+  version: ed9dcf23fad919a44c696246156974c132bc26e4
+  subpackages:
+  - jsonpb
+  - proto
+  - protoc-gen-go
+- name: github.com/mholt/binding
+  version: f53601f1387c422be7317a2b01d96b2455d2d2d6
+testImports: []

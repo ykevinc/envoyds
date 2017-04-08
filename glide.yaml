@@ -1,0 +1,12 @@
+package: .
+import:
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
+  - protoc-gen-go
+- package: github.com/mholt/binding
+  version: v0.3.0
+- package: github.com/go-redis/redis
+  version: v6.0.0
+- package: github.com/BurntSushi/toml
+  version: v0.3.0
