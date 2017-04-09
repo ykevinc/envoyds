@@ -75,7 +75,6 @@ func NewRouter(env, redisHost string, redisPort int) (*regexpRouter, error) {
 func registerService(w http.ResponseWriter, r *http.Request) {
 	var (
 		req ServicePostRequest
-		err error
 	)
 	errs := binding.Bind(r, &req)
 	if len(errs) > 0 {
@@ -91,7 +90,7 @@ func registerService(w http.ResponseWriter, r *http.Request) {
 	host := makeHost(&req)
 	host.Service = serviceName
 	log.Printf("registerService service=%s\n", serviceName)
-	if err = ds.RegisterService(host); err != nil {
+	if err := ds.RegisterService(host); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}

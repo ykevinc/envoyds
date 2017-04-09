@@ -16,7 +16,7 @@ func (r *ServicePostRequest) FieldMap(req *http.Request) binding.FieldMap {
 			Form: "tags",
 			Binder: func(fieldName string, formVals []string, errs binding.Errors) binding.Errors {
 				if err := json.Unmarshal([]byte(formVals[0]), &r.Tags); err != nil {
-					panic(err)
+					errs = append(errs, err)
 				}
 				return errs
 			},
