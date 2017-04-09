@@ -147,9 +147,6 @@ func callToRegister(t *testing.T, marshaler *jsonpb.Marshaler, postRequest *envo
 		t.Fatal(err)
 	}
 	defer resp.Body.Close()
-	if err != nil {
-		t.Fatal(err)
-	}
 	if resp.StatusCode != expectHttpStatus {
 		t.Fatal(resp.StatusCode)
 	}
@@ -177,9 +174,6 @@ func callToDelete(t *testing.T, testService string, ip string, port int, expectH
 		t.Fatal(err)
 	}
 	defer resp.Body.Close()
-	if err != nil {
-		t.Fatal(err)
-	}
 	if resp.StatusCode != expectHttpStatus {
 		t.Fatal(resp.StatusCode)
 	}

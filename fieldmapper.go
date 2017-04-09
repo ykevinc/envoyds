@@ -2,7 +2,6 @@ package envoyds
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/mholt/binding"
 	"net/http"
 )
@@ -16,7 +15,6 @@ func (r *ServicePostRequest) FieldMap(req *http.Request) binding.FieldMap {
 		&r.Tags: binding.Field{
 			Form: "tags",
 			Binder: func(fieldName string, formVals []string, errs binding.Errors) binding.Errors {
-				fmt.Println(formVals)
 				if err := json.Unmarshal([]byte(formVals[0]), &r.Tags); err != nil {
 					panic(err)
 				}
