@@ -93,8 +93,7 @@ func (ds *service) DeleteService(service, ip string, port int) (int, error) {
 		return c, nil
 	} else {
 		serviceKey := ds.getServiceKey(service, ip, port)
-		err := ds.deleteServiceByServiceKey(serviceKey)
-		if err != nil {
+		if err := ds.deleteServiceByServiceKey(serviceKey); err != nil {
 			return 0, err
 		}
 		return 1, nil
@@ -117,8 +116,7 @@ func (ds *service) UpdateServiceWeight(service, ip string, port int, weight int3
 		return c, nil
 	} else {
 		serviceKey := ds.getServiceKey(service, ip, port)
-		err := ds.updateServiceWeightByKey(serviceKey, weight)
-		if err != nil {
+		if err := ds.updateServiceWeightByKey(serviceKey, weight);err != nil {
 			return 0, err
 		}
 		return 1, nil
@@ -165,7 +163,7 @@ func (ds *service) scanAndHandle(prefix string, handle func(serviceKey string) e
 	for {
 		serviceKeys, cursor, err = ds.redis.Scan(cursor, prefix, REDIS_BATCH_SIZE).Result()
 		if err != nil {
-			return 0, err
+			return len(unique), err
 		}
 		for _, serviceKey := range serviceKeys {
 			var host Host
