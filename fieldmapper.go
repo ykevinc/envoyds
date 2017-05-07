@@ -2,8 +2,9 @@ package envoyds
 
 import (
 	"encoding/json"
-	"github.com/mholt/binding"
 	"net/http"
+
+	"github.com/mholt/binding"
 )
 
 func (r *ServicePostRequest) FieldMap(req *http.Request) binding.FieldMap {
@@ -16,7 +17,7 @@ func (r *ServicePostRequest) FieldMap(req *http.Request) binding.FieldMap {
 			Form: "tags",
 			Binder: func(fieldName string, formVals []string, errs binding.Errors) binding.Errors {
 				if err := json.Unmarshal([]byte(formVals[0]), &r.Tags); err != nil {
-					errs = append(errs, err)
+					errs.Add([]string{fieldName}, err.Error(), err.Error())
 				}
 				return errs
 			},
@@ -26,6 +27,6 @@ func (r *ServicePostRequest) FieldMap(req *http.Request) binding.FieldMap {
 
 func (r *ServiceUpdateLoadBalancingRequest) FieldMap(req *http.Request) binding.FieldMap {
 	return binding.FieldMap{
-		&r.LoadBalancingWeight:              "load_balancing_weight",
+		&r.LoadBalancingWeight: "load_balancing_weight",
 	}
 }
